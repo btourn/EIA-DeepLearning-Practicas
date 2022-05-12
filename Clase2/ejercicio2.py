@@ -3,11 +3,7 @@ import matplotlib.pyplot as plt
 
 
 def fun(x):
-    N = len(x)
-    sigma_epsilon = 1
     y = -(x-2)**2 + 3 +0.2*np.sin(16*x)
-    epsilon = sigma_epsilon*np.random.randn(N)
-    y = y + epsilon
     return y
 
 

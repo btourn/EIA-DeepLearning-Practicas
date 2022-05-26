@@ -34,18 +34,19 @@ def train(model, optimizer, criterion, trainloader, epochs):
     LOSS=[]
     #trainloss = 0.0
     for epoch in range(epochs):
+        total = 0
         for x, y in trainloader:
             if torch.cuda.is_available():
                 x, y = x.cuda(), y.cuda()
-            
             optimizer.zero_grad()
             yhat = model.forward(x)
             loss = criterion(yhat, y)
             loss.backward()
             optimizer.step()
-            LOSS.append(loss.item())
-            #trainloss += loss.item()
-        print("Epoch:", epoch, "MSE:", loss.item()) #trainloss/len(trainloader))
+            total += loss.item()
+        LOSS.append(total)
+        #trainloss += loss.item()
+        print("Epoch:", epoch, "MSE:", total) #trainloss/len(trainloader))
     return LOSS #trainloss 
 
 
